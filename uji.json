@@ -1,0 +1,121 @@
+{
+  "about_fermata_brief": {
+    "title": "fermata",
+    "description": "fermata adalah alat refleksi interaktif berbasis Al untuk membantu mahasiswa musik membentuk identitas musikal yang autentik.",
+    "developed_by": "Dikembangkan oleh Enry Johan Jaohari (S3 Pendidikan Seni, SPS UPI) dan Muhammad Yuda Ramadhan (RPL Musik, FPSD UPI).",
+    "academic_context": "Produk ini merupakan tugas mata kuliah Seni dan Industri Kreatif di bawah bimbingan Dr. Yanti Heriyawati dan Prof. Juju Masunah.",
+    "structure_summary": "Terdiri dari lima fase refleksi terstruktur yang mengarahkan eksplorasi, narasi diri, dan posisi di industri musik.",
+    "ip_status": "Konten dan sistem dilindungi hak cipta dan akan didaftarkan melalui DIPPU UPI."
+  },
+  "about_fermata_full": {
+    "title": "about fermata (Versi Lengkap)",
+    "tagline": "Musical identity made personal.",
+    "description_id": "fermata adalah alat refleksi interaktif berbasis Al yang dirancang untuk membantu mahasiswa musik menemukan dan membentuk identitas musikal yang autentik. Melalui lima fase terstruktur, sistem ini membimbing pengguna mengeksplorasi pengalaman pribadi, referensi artistik, dan arah karier. Diciptakan bagi musisi yang ingin mengekspresikan dirinya secara jujur melalui identitas musikal.",
+    "description_en": "fermata is an interactive Al-based reflection tool designed to help music students discover and shape an authentic musical identity. Through five structured phases, it guides users to explore personal experiences, artistic influences, and future direction. Built for musicians who want to express themselves truthfully through their musical identity.",
+    "purpose": "Membantu mahasiswa musik mengenali, merumuskan, dan mengarahkan identitas musikalnya secara mandiri dan reflektif.",
+    "benefits": [
+      "Memfasilitasi proses eksplorasi diri secara terstruktur",
+      "Mendorong kesadaran artistik dan arah karier",
+      "Menumbuhkan keunikan dalam ekspresi musikal"
+    ],
+    "structure_system": {
+      "heading": "Struktur Sistem (Fase 1-5)",
+      "intro": "fermata terdiri dari lima fase refleksi terstruktur:",
+      "phases": [
+        {
+          "name": "Fase 1 - Refleksi Diri Musikal",
+          "description": "Menggali pengalaman, latar belakang, dan kebiasaan bermusik secara personal."
+        },
+        {
+          "name": "Fase 2 - Cermin Artistik dan Referensi",
+          "description": "Menelusuri pengaruh musikal, sosok inspiratif, dan karya yang membentuk selera musikal pengguna."
+        },
+        {
+          "name": "Fase 3 - Keunikan dan Gaya Pribadi",
+          "description": "Memetakan kebiasaan, gaya bermusik, dan perbedaan dari musisi lain untuk menemukan kekhasan diri."
+        },
+        {
+          "name": "Fase 4 - Narasi Identitas Musikal",
+          "description": "Menyusun narasi reflektif yang menggambarkan identitas musikal secara profesional dan terarah."
+        },
+        {
+          "name": "Fase 5 - Posisi Industri dan Branding",
+          "description": "Merancang posisi dalam ekosistem musik, strategi branding, dan langkah konkret untuk pengembangan karier."
+        }
+      ]
+    },
+    "pengembangan_ke_depan": {
+      "visi": "FERMATA dikembangkan sebagai sistem refleksi modular yang dapat diperluas lintas prodi, profesi, dan disiplin ilmu.",
+      "rencana_tahapan": [
+        "Tahap 1 – Implementasi di Prodi Musik FPSD UPI (Performance, Komposisi, Teknologi Musik).",
+        "Tahap 2 – Ekspansi untuk seluruh program studi di FPSD (DKV, FTV, Seni Rupa, Tari, Pendidikan Musik).",
+        "Tahap 3 – Modul refleksi profesional untuk dosen seni guna menyusun roadmap kepakaran dan narasi akademik.",
+        "Tahap 4 – Replikasi nasional untuk kampus seni dan musik di seluruh Indonesia, berbasis budaya lokal.",
+        "Tahap 5 – Adaptasi lintas disiplin (kedokteran, psikologi, teknik, hukum, pendidikan) sebagai alat refleksi identitas profesional."
+      ],
+      "penutup": "FERMATA adalah kerangka refleksi multidisipliner berbasis pedagogi, psikologi, dan etika profesi, yang dirancang untuk mendampingi proses penemuan diri dalam pendidikan tinggi seni dan profesi."
+    }
+  },
+  "development_notes": {
+    "heading": "Catatan Pengembangan",
+    "note1": "fermata dikembangkan sebagai respons terhadap kebutuhan mahasiswa musik untuk memahami dan membentuk identitas musikal secara lebih sadar, mandiri, dan terstruktur.",
+    "note2": "Sistem ini dirancang berdasarkan prinsip refleksi sebagai fondasi pembelajaran artistik, dengan pendekatan berbasis dialog dan eksplorasi pengalaman pribadi.",
+    "note3": "Lima fase dalam fermata bukan sekadar modul, tetapi dirancang sebagai perjalanan bertahap yang menstimulasi kesadaran diri, orisinalitas artistik, dan arah karier.",
+    "note4": "Produk ini berangkat dari praktik pendidikan musik berbasis pengalaman dan pengamatan langsung terhadap pentingnya penemuan diri dalam membangun eksistensi musisi di era digital."
+  },
+  "team_credentials_institution": {
+    "heading": "Tim, Kredensial, dan Institusi",
+    "concept_content_developer": {
+      "name": "Enry Johan Jaohari",
+      "role": "Pengembang Konsep dan Konten",
+      "affiliation": "Mahasiswa Program Doktor Pendidikan Seni, Sekolah Pascasarjana, Universitas Pendidikan Indonesia"
+    },
+    "programmer_ai_developer": {
+      "name": "Muhammad Yuda Ramadhan",
+      "role": "Programmer dan Pengembang AI",
+      "affiliation": "Mahasiswa RPL, Program Studi Musik, FPSD UPI - Angkatan 2024"
+    },
+    "academic_context": {
+      "course": "Mata kuliah Seni dan Industri Kreatif",
+      "program": "Program Studi S3 Pendidikan Seni, Sekolah Pascasarjana, Universitas Pendidikan Indonesia",
+      "supervisors": [
+        "Dr. Yanti Heriyawati, S.Pd., M.Hum.",
+        "Prof. Juju Masunah, M.Sn., Ph.D."
+      ]
+    }
+  },
+  "copyright_intellectual_status": {
+    "heading": "Hak Cipta / Status Intelektual",
+    "originality": "fermata merupakan karya orisinal yang dikembangkan oleh Enry Johan Jaohari dan Muhammad Yuda Ramadhan dalam konteks akademik di Universitas Pendidikan Indonesia.",
+    "ownership": "Hak cipta melekat secara otomatis pada seluruh struktur sistem, konten reflektif, dan alur pengembangan yang terdapat dalam produk ini.",
+    "restrictions": "Penggunaan ulang, penyalinan, adaptasi, atau distribusi sebagian maupun seluruh isi fermata tanpa izin tertulis dari pengembang dilarang dan dapat dikenakan sanksi sesuai ketentuan hukum yang berlaku.",
+    "registration_process": "Proses pendaftaran resmi ke Direktorat Inovasi dan Pusat Unggulan (DIPPU) UPI akan dilakukan untuk perlindungan lanjutan atas karya ini."
+  },
+  "ethics_and_usage_limitations": {
+    "heading": "Etika dan Batasan Penggunaan",
+    "design_purpose": "fermata dirancang sebagai alat bantu refleksi pribadi, bukan penentu mutlak identitas musikal.",
+    "subjectivity": "Hasil eksplorasi bersifat subjektif dan tidak dimaksudkan untuk mengotak-ngotakkan gaya atau pilihan artistik.",
+    "role_in_learning": "Sistem ini tidak menggantikan peran guru, mentor, atau pengalaman nyata, melainkan melengkapi proses pembelajaran secara mandiri.",
+    "user_expectations": "Pengguna diharapkan bersikap terbuka, jujur, dan bertanggung jawab dalam setiap proses refleksi."
+  },
+  "virtual_play": {
+    "module_name": "Virtual Play Samii Music entertainment",
+    "developer": "Andrian Purwanto",
+    "background": "Virtual Play lahir dari studi kasus nyata di bidang bisnis musik entertainment. Andrian sering menghadapi pertanyaan dari klien mengenai format musik seperti trio, kuartet, atau full band. Kebutuhan akan fleksibilitas format musik memunculkan ide untuk menciptakan aplikasi berbasis web yang menghadirkan simulasi interaktif untuk latihan, presentasi, dan pertunjukan.",
+    "core_features": [
+      "Aplikasi web interaktif untuk memilih format pemain musik",
+      "Menyalakan semua pemain sekaligus atau mematikan sebagian sesuai kebutuhan",
+      "Interaksi melalui perangkat VR atau ponsel dengan titik mata (eye-point) untuk play/stop",
+      "Lima alat musik utama beserta visualisasi operator suara 3D bernama Mamang Glenn"
+    ],
+    "interface_design": "Antarmuka ramah pengguna memungkinkan pemilihan konfigurasi format secara cepat melalui klik web atau kontrol VR tanpa instruksi teknis yang rumit.",
+    "future_development": [
+      "Penambahan format alat musik lengkap seperti kuartet, trio, string section, dan band",
+      "Penyediaan berbagai format lagu",
+      "Pengembangan fungsi Mamang Glenn sebagai operator kontrol suara, mixing, dan interaksi lanjutan",
+      "Peningkatan kualitas suara dan sinkronisasi antar alat musik virtual"
+    ],
+    "quality_synchronization": "Sistem menjamin transisi mulus, tanpa delay atau ketidaksesuaian tempo antar instrumen, agar tetap presisi baik dalam latihan maupun persiapan pertunjukan.",
+    "collaboration_with_fermata_ai": "Virtual Play akan menjadi mitra strategis dengan menyediakan simulasi konfigurasi musikal untuk mendukung eksplorasi identitas musikal di FERMATA AI. Mahasiswa dapat menguji karakter musikal mereka secara langsung dalam berbagai format dan tekstur musikal."
+  }
+}
