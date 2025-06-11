@@ -1,52 +1,76 @@
-from flask import Flask, request, jsonify
+import gradio as gr
 import os
-from flask_cors import CORS # Import CORS
-
-app = Flask(__name__)
-CORS(app) # Mengaktifkan CORS untuk semua route, penting jika ada masalah lintas domain
+import json # Untuk memuat uji.json dan framework.json
 
 # --- Placeholder untuk Logika Model AI Kustom Anda ---
-# Di SINI Anda akan mengimplementasikan atau memuat model AI Anda yang sebenarnya.
+# Fungsi-fungsi ini akan dipanggil oleh Gradio.
+# Jika Anda memiliki model ML yang sebenarnya, Anda akan memuatnya di sini (di luar fungsi)
+# agar hanya dimuat sekali saat aplikasi dimulai.
 
-def get_qa_response(messages_history, uji_data_json):
+# Muat data uji.json dan framework.json
+# Asumsi file-file ini akan diunggah ke root folder di Hugging Face Space (misalnya, di samping app.py)
+# Anda perlu mengunggah uji.json dan framework_kuratorial_fermata.json ke repositori GitHub Anda,
+# di root folder ferma_ai_api/, bersama app.py
+try:
+    with open('uji.json', 'r', encoding='utf-8') as f:
+        uji_data_json = json.load(f)
+except FileNotFoundError:
+    uji_data_json = {} # Default kosong jika file tidak ditemukan
+
+try:
+    with open('framework_kuratorial_fermata.json', 'r', encoding='utf-8') as f:
+        framework_dict = json.load(f)
+except FileNotFoundError:
+    framework_dict = {} # Default kosong jika file tidak ditemukan
+
+
+def get_qa_response(messages_history_str, uji_data_json_str):
     """
     Logika placeholder untuk menjawab pertanyaan di mode Uji.
-    Ini membaca data dari uji.json dan memberikan respons dasar.
+    Input datang sebagai string JSON, perlu di-parse.
     """
+    messages_history = json.loads(messages_history_str)
+    uji_data = json.loads(uji_data_json_str)
+
     latest_user_message = messages_history[-1]['content'].lower() if messages_history else ""
 
+    # Logika sederhana berdasarkan uji.json (seperti sebelumnya)
     if "fermata" in latest_user_message and ("apa" in latest_user_message or "tentang" in latest_user_message):
-        return uji_data_json.get('about_fermata_brief', {}).get('description', 'Fermata adalah alat refleksi interaktif berbasis AI.').strip()
+        return uji_data.get('about_fermata_brief', {}).get('description', 'Fermata adalah alat refleksi interaktif berbasis AI.').strip()
     elif "pengembang" in latest_user_message or "dikembangkan" in latest_user_message or "siapa" in latest_user_message:
-        return uji_data_json.get('about_fermata_brief', {}).get('developed_by', 'Dikembangkan oleh Enry Johan Jaohari dan Muhammad Yuda Ramadhan.').strip()
+        return uji_data.get('about_fermata_brief', {}).get('developed_by', 'Dikembangkan oleh Enry Johan Jaohari dan Muhammad Yuda Ramadhan.').strip()
     elif "fase" in latest_user_message and "refleksi" in latest_user_message:
         phases_summary = "Fermata terdiri dari lima fase refleksi terstruktur: "
-        for phase in uji_data_json.get('about_fermata_full', {}).get('structure_system', {}).get('phases', []):
+        for phase in uji_data.get('about_fermata_full', {}).get('structure_system', {}).get('phases', []):
             phases_summary += f"{phase['name']} ({phase['description']}). "
         return phases_summary.strip()
     elif "virtual play" in latest_user_message or "mamang glenn" in latest_user_message:
-        return uji_data_json.get('virtual_play', {}).get('background', 'Virtual Play adalah simulasi konfigurasi musikal.').strip() + " " + \
-               "Fitur utama: " + ", ".join(uji_data_json.get('virtual_play', {}).get('core_features', [])) + ". " + \
-               uji_data_json.get('virtual_play', {}).get('collaboration_with_fermata_ai', '').strip()
+        return uji_data.get('virtual_play', {}).get('background', 'Virtual Play adalah simulasi konfigurasi musikal.').strip() + " " + \
+               "Fitur utama: " + ", ".join(uji_data.get('virtual_play', {}).get('core_features', [])) + ". " + \
+               uji_data.get('virtual_play', {}).get('collaboration_with_fermata_ai', '').strip()
     elif "hak cipta" in latest_user_message or "copyright" in latest_user_message:
-         return uji_data_json.get('copyright_intellectual_status', {}).get('originality', '').strip() + " " + \
-                uji_data_json.get('copyright_intellectual_status', {}).get('ownership', '').strip() + " " + \
-                uji_data_json.get('copyright_intellectual_status', {}).get('restrictions', '').strip()
+         return uji_data.get('copyright_intellectual_status', {}).get('originality', '').strip() + " " + \
+                uji_data.get('copyright_intellectual_status', {}).get('ownership', '').strip() + " " + \
+                uji_data.get('copyright_intellectual_status', {}).get('restrictions', '').strip()
     elif "etika" in latest_user_message or "batasan penggunaan" in latest_user_message:
-        return uji_data_json.get('ethics_and_usage_limitations', {}).get('design_purpose', '').strip() + " " + \
-               uji_data_json.get('ethics_and_usage_limitations', {}).get('role_in_learning', '').strip()
+        return uji_data.get('ethics_and_usage_limitations', {}).get('design_purpose', '').strip() + " " + \
+               uji_data.get('ethics_and_usage_limitations', {}).get('role_in_learning', '').strip()
     elif "visi fermata" in latest_user_message or "pengembangan ke depan" in latest_user_message:
-        visi = uji_data_json.get('about_fermata_full', {}).get('pengembangan_ke_depan', {}).get('visi', '').strip()
-        rencana = "; ".join(uji_data_json.get('about_fermata_full', {}).get('pengembangan_ke_depan', {}).get('rencana_tahapan', []))
+        visi = uji_data.get('about_fermata_full', {}).get('pengembangan_ke_depan', {}).get('visi', '').strip()
+        rencana = "; ".join(uji_data.get('about_fermata_full', {}).get('pengembangan_ke_depan', {}).get('rencana_tahapan', []))
         return f"Visi Fermata: {visi}. Rencana tahapan: {rencana}."
 
     return f"Saya model AI kustom Anda. Anda bertanya: '{latest_user_message}'. Saya tidak menemukan informasi spesifik tentang itu dalam data uji."
 
-def generate_narrative_and_roadmap(user_answers_dict, framework_dict, user_name):
+
+def generate_narrative_and_roadmap(user_answers_str, framework_str, user_name):
     """
     Logika placeholder untuk menghasilkan narasi dan peta aksi.
-    Ini menggabungkan jawaban pengguna dan fragmen dari framework.
+    Input datang sebagai string JSON, perlu di-parse.
     """
+    user_answers_dict = json.loads(user_answers_str)
+    framework_dict_parsed = json.loads(framework_str)
+
     # Gabungkan jawaban user ke dalam string untuk narasi
     all_answers_flat = {}
     for phase, answers_list in user_answers_dict.items():
@@ -57,7 +81,7 @@ def generate_narrative_and_roadmap(user_answers_dict, framework_dict, user_name)
     narrative_parts.append(f"Berdasarkan refleksi Anda, {user_name}, perjalanan musikal Anda terbentuk dari pengalaman mendalam di bidang {all_answers_flat.get('Fase 1', 'musik')}. Anda memiliki kecenderungan kuat terhadap {all_answers_flat.get('Fase 3', 'eksplorasi bunyi atau performa')}, membedakan Anda dari yang lain.")
     narrative_parts.append(f"Pengaruh artistik dari {all_answers_flat.get('Fase 2', 'berbagai musisi dan karya')} telah membentuk selera dan gaya Anda, menciptakan keunikan dalam ekspresi musikal Anda.")
     narrative_parts.append(f"Dalam memahami posisi Anda di industri, Anda membayangkan audiens yang {all_answers_flat.get('Fase 5', 'spesifik dan terlibat')}, serta strategi branding yang menekankan pada {all_answers_flat.get('Fase 5', 'kejujuran ekspresi')}.")
-    narrative_parts.append(f"Secara keseluruhan, identitas musikal Anda, seperti yang dideskripsikan oleh framework kuratorial Fermata, adalah perpaduan antara keahlian teknis, nilai filosofis, dan potensi dampak sosial dan ekonomi.")
+    narrative_parts.append(f"Secara keseluruhan, identitas musikal Anda, seperti yang dideskripsikan oleh framework_kuratorial_fermata.json, adalah perpaduan antara keahlian teknis, nilai filosofis, dan potensi dampak sosial dan ekonomi.")
 
     roadmap_parts = []
     roadmap_parts.append("\n### Peta Aksi Strategis (3-6 Bulan Ke Depan)")
@@ -79,27 +103,35 @@ def generate_narrative_and_roadmap(user_answers_dict, framework_dict, user_name)
     return "\n\n".join(narrative_parts) + "\n\n" + "\n".join(roadmap_parts)
 
 
-@app.route('/ask', methods=['POST'])
-def ask_ai():
-    data = request.get_json()
-    messages = data.get('messages', [])
-    uji_data = data.get('ujiData', {}) 
+# --- Inisialisasi Gradio Interface ---
+# Anda bisa membuat UI sederhana di sini, meskipun kita fokus pada API.
+# Gradio akan secara otomatis membuat endpoint API untuk fungsi-fungsi ini.
 
-    ai_response = get_qa_response(messages, uji_data)
+# Interface untuk Tanya Jawab (Mode Uji)
+qa_interface = gr.Interface(
+    fn=get_qa_response,
+    inputs=[
+        gr.Textbox(label="Riwayat Pesan (JSON string)", lines=5),
+        gr.Textbox(label="Data Uji (JSON string)", lines=5)
+    ],
+    outputs=gr.Textbox(label="Respons AI"),
+    title="Fermata QA Model (Custom AI)",
+    description="Endpoint API untuk tanya jawab di mode Uji."
+)
 
-    return jsonify({'response': ai_response})
+# Interface untuk Ringkasan/Narasi (Mode Utama)
+summary_interface = gr.Interface(
+    fn=generate_narrative_and_roadmap,
+    inputs=[
+        gr.Textbox(label="Jawaban Pengguna (JSON string)", lines=10),
+        gr.Textbox(label="Framework (JSON string)", lines=10),
+        gr.Textbox(label="Nama Pengguna")
+    ],
+    outputs=gr.Textbox(label="Narasi & Peta Aksi"),
+    title="Fermata Summary Model (Custom AI)",
+    description="Endpoint API untuk menghasilkan narasi dan peta aksi."
+)
 
-@app.route('/summarize', methods=['POST'])
-def summarize_ai():
-    data = request.get_json()
-    all_answers = data.get('userAnswers', {})
-    user_name = data.get('userName', 'Mahasiswa')
-    framework_content = data.get('framework', {})
-
-    ai_summary = generate_narrative_and_roadmap(all_answers, framework_content, user_name)
-
-    return jsonify({'response': ai_summary})
-
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+# Combine interfaces if you want a single space, or create separate spaces
+# For API usage, a single space with multiple functions is fine.
+gr.TabbedInterface([qa_interface, summary_interface], ["QA Model", "Summary Model"]).launch()
