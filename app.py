@@ -1,40 +1,26 @@
 import gradio as gr
 import os
-import json # Untuk memuat uji.json dan framework.json
-
-# --- Placeholder untuk Logika Model AI Kustom Anda ---
-# Fungsi-fungsi ini akan dipanggil oleh Gradio.
-# Jika Anda memiliki model ML yang sebenarnya, Anda akan memuatnya di sini (di luar fungsi)
-# agar hanya dimuat sekali saat aplikasi dimulai.
+import json
 
 # Muat data uji.json dan framework.json
-# Asumsi file-file ini akan diunggah ke root folder di Hugging Face Space (misalnya, di samping app.py)
-# Anda perlu mengunggah uji.json dan framework_kuratorial_fermata.json ke repositori GitHub Anda,
-# di root folder ferma_ai_api/, bersama app.py
 try:
     with open('uji.json', 'r', encoding='utf-8') as f:
         uji_data_json = json.load(f)
 except FileNotFoundError:
-    uji_data_json = {} # Default kosong jika file tidak ditemukan
+    uji_data_json = {}
 
 try:
     with open('framework_kuratorial_fermata.json', 'r', encoding='utf-8') as f:
         framework_dict = json.load(f)
 except FileNotFoundError:
-    framework_dict = {} # Default kosong jika file tidak ditemukan
-
+    framework_dict = {}
 
 def get_qa_response(messages_history_str, uji_data_json_str):
-    """
-    Logika placeholder untuk menjawab pertanyaan di mode Uji.
-    Input datang sebagai string JSON, perlu di-parse.
-    """
     messages_history = json.loads(messages_history_str)
     uji_data = json.loads(uji_data_json_str)
 
     latest_user_message = messages_history[-1]['content'].lower() if messages_history else ""
 
-    # Logika sederhana berdasarkan uji.json (seperti sebelumnya)
     if "fermata" in latest_user_message and ("apa" in latest_user_message or "tentang" in latest_user_message):
         return uji_data.get('about_fermata_brief', {}).get('description', 'Fermata adalah alat refleksi interaktif berbasis AI.').strip()
     elif "pengembang" in latest_user_message or "dikembangkan" in latest_user_message or "siapa" in latest_user_message:
@@ -62,16 +48,10 @@ def get_qa_response(messages_history_str, uji_data_json_str):
 
     return f"Saya model AI kustom Anda. Anda bertanya: '{latest_user_message}'. Saya tidak menemukan informasi spesifik tentang itu dalam data uji."
 
-
 def generate_narrative_and_roadmap(user_answers_str, framework_str, user_name):
-    """
-    Logika placeholder untuk menghasilkan narasi dan peta aksi.
-    Input datang sebagai string JSON, perlu di-parse.
-    """
     user_answers_dict = json.loads(user_answers_str)
     framework_dict_parsed = json.loads(framework_str)
 
-    # Gabungkan jawaban user ke dalam string untuk narasi
     all_answers_flat = {}
     for phase, answers_list in user_answers_dict.items():
         all_answers_flat[phase] = ", ".join(answers_list) if answers_list else "belum ada jawaban"
@@ -102,12 +82,6 @@ def generate_narrative_and_roadmap(user_answers_str, framework_str, user_name):
 
     return "\n\n".join(narrative_parts) + "\n\n" + "\n".join(roadmap_parts)
 
-
-# --- Inisialisasi Gradio Interface ---
-# Anda bisa membuat UI sederhana di sini, meskipun kita fokus pada API.
-# Gradio akan secara otomatis membuat endpoint API untuk fungsi-fungsi ini.
-
-# Interface untuk Tanya Jawab (Mode Uji)
 qa_interface = gr.Interface(
     fn=get_qa_response,
     inputs=[
@@ -119,7 +93,6 @@ qa_interface = gr.Interface(
     description="Endpoint API untuk tanya jawab di mode Uji."
 )
 
-# Interface untuk Ringkasan/Narasi (Mode Utama)
 summary_interface = gr.Interface(
     fn=generate_narrative_and_roadmap,
     inputs=[
@@ -132,6 +105,4 @@ summary_interface = gr.Interface(
     description="Endpoint API untuk menghasilkan narasi dan peta aksi."
 )
 
-# Combine interfaces if you want a single space, or create separate spaces
-# For API usage, a single space with multiple functions is fine.
 gr.TabbedInterface([qa_interface, summary_interface], ["QA Model", "Summary Model"]).launch()
